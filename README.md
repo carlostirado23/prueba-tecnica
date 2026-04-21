@@ -28,9 +28,9 @@ npm install
 npm run dev
 ```
 
-Servidor disponible en: `http://localhost:4000`
+Servidor disponible en: `https://prueba-tecnica-go9k.onrender.com`
 
-Documentación interactiva (Swagger): `http://localhost:4000/api-docs`
+Documentación interactiva (Swagger): `https://prueba-tecnica-go9k.onrender.com/api-docs/`
 
 ---
 
@@ -247,6 +247,6 @@ El campo `file_url` fue eliminado del modelo dado que su rol queda cubierto por 
 ## Prueba de endpoints con Swagger
 
 1. Iniciar el servidor: `npm run dev`
-2. Abrir `http://localhost:4000/api-docs`
+2. Abrir `https://prueba-tecnica-go9k.onrender.com/api-docs/`
 3. Usar el flujo descrito arriba directamente desde la interfaz
 4. Para endpoints protegidos con JWT: hacer login → copiar token → clic en **Authorize** → pegar `Bearer <token>`
