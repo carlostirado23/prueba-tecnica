@@ -40,13 +40,14 @@ Documentación interactiva (Swagger): `http://localhost:4000/api-docs`
 PORT=4000
 
 # Base de datos
-DB_HOST=localhost
-DB_USER=postgres
-DB_PASSWORD=tu_password
-DB_NAME=prueba-tecnica
+DB_HOST=dpg-d7jnqu9j2pic739k2hdg-a.oregon-postgres.render.com
+DB_USER=carlos
+DB_PASSWORD=gGEGSnb7wHLCq48Xw0l9FpypBT0uJgtn
+DB_NAME=pruebatecnica_q9zk
+DB_PORT=5432
 
 # JWT
-JWT_SECRET=clave_secreta_larga
+JWT_SECRET=3EiEqad9maf5OX5oqIhj4FJfd5SE4fIdaQBOa7I2o9IaLOZB842xGWgBvd7vu5mOUvcBDIHyzq5vM814GAeunzAhVsSn45Ou2tyR
 
 # Migraciones automáticas (true solo la primera vez)
 MIGRATE=false
@@ -57,8 +58,8 @@ ADMIN_KEY=admin123
 # Correo electrónico (dejar EMAIL_USER vacío para usar consola en desarrollo)
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=tu_correo@gmail.com
-EMAIL_PASS=app_password_de_16_digitos
+EMAIL_USER=carlosmariotirado25@gmail.com
+EMAIL_PASS=unbsptzqjrgoqjjr
 EMAIL_FROM=noreply@saludocupacional.com
 ```
 
