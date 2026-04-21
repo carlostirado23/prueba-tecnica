@@ -58,7 +58,7 @@ ADMIN_KEY=admin123
 # Correo electrónico (dejar EMAIL_USER vacío para usar consola en desarrollo)
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
-EMAIL_USER=carlosmariotirado25@gmail.com
+EMAIL_USER=correo@gmail.com
 EMAIL_PASS=unbsptzqjrgoqjjr
 EMAIL_FROM=noreply@saludocupacional.com
 ```
