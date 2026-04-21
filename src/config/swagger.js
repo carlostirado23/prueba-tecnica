@@ -8,7 +8,7 @@ const options = {
             version: "1.0.0",
             description: "Módulo de consulta y descarga de documentos clínicos",
         },
-        servers: [{ url: `http://localhost:${process.env.PORT || 4000}` }],
+        servers: [{ url: `https://prueba-tecnica-go9k.onrender.com` }],
         components: {
             securitySchemes: {
                 bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
@@ -50,7 +50,11 @@ const options = {
                         required: true,
                         content: {
                             "application/json": {
-                                schema: { type: "object", properties: { cedula: { type: "string" } }, required: ["cedula"] },
+                                schema: {
+                                    type: "object",
+                                    properties: { cedula: { type: "string" } },
+                                    required: ["cedula"],
+                                },
                             },
                         },
                     },
@@ -77,7 +81,14 @@ const options = {
                         },
                     },
                     responses: {
-                        200: { description: "JWT retornado", content: { "application/json": { schema: { type: "object", properties: { token: { type: "string" } } } } } },
+                        200: {
+                            description: "JWT retornado",
+                            content: {
+                                "application/json": {
+                                    schema: { type: "object", properties: { token: { type: "string" } } },
+                                },
+                            },
+                        },
                         401: { description: "Código incorrecto o expirado" },
                     },
                 },
@@ -88,7 +99,14 @@ const options = {
                     summary: "Listar documentos del paciente autenticado",
                     security: [{ bearerAuth: [] }],
                     responses: {
-                        200: { description: "Lista de documentos", content: { "application/json": { schema: { type: "array", items: { $ref: "#/components/schemas/Document" } } } } },
+                        200: {
+                            description: "Lista de documentos",
+                            content: {
+                                "application/json": {
+                                    schema: { type: "array", items: { $ref: "#/components/schemas/Document" } },
+                                },
+                            },
+                        },
                         401: { description: "No autorizado" },
                     },
                 },
@@ -98,9 +116,14 @@ const options = {
                     tags: ["Documents"],
                     summary: "Obtener detalle de un documento",
                     security: [{ bearerAuth: [] }],
-                    parameters: [{ in: "path", name: "id", required: true, schema: { type: "string", format: "uuid" } }],
+                    parameters: [
+                        { in: "path", name: "id", required: true, schema: { type: "string", format: "uuid" } },
+                    ],
                     responses: {
-                        200: { description: "Documento encontrado", content: { "application/json": { schema: { $ref: "#/components/schemas/Document" } } } },
+                        200: {
+                            description: "Documento encontrado",
+                            content: { "application/json": { schema: { $ref: "#/components/schemas/Document" } } },
+                        },
                         404: { description: "No encontrado" },
                     },
                 },
@@ -110,7 +133,9 @@ const options = {
                     tags: ["Documents"],
                     summary: "Descargar PDF del documento",
                     security: [{ bearerAuth: [] }],
-                    parameters: [{ in: "path", name: "id", required: true, schema: { type: "string", format: "uuid" } }],
+                    parameters: [
+                        { in: "path", name: "id", required: true, schema: { type: "string", format: "uuid" } },
+                    ],
                     responses: {
                         200: { description: "Archivo PDF", content: { "application/pdf": {} } },
                         404: { description: "No encontrado" },
@@ -124,10 +149,21 @@ const options = {
                     parameters: [{ in: "header", name: "x-admin-key", required: true, schema: { type: "string" } }],
                     requestBody: {
                         required: true,
-                        content: { "application/json": { schema: { type: "object", properties: { cedula: { type: "string" }, email: { type: "string" } }, required: ["cedula", "email"] } } },
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: { cedula: { type: "string" }, email: { type: "string" } },
+                                    required: ["cedula", "email"],
+                                },
+                            },
+                        },
                     },
                     responses: {
-                        201: { description: "Paciente creado", content: { "application/json": { schema: { $ref: "#/components/schemas/Patient" } } } },
+                        201: {
+                            description: "Paciente creado",
+                            content: { "application/json": { schema: { $ref: "#/components/schemas/Patient" } } },
+                        },
                         400: { description: "Error de validación" },
                         403: { description: "Acceso denegado" },
                     },
@@ -146,7 +182,10 @@ const options = {
                                     type: "object",
                                     properties: {
                                         cedula: { type: "string" },
-                                        type: { type: "string", enum: ["concepto_medico", "paraclinico", "examen_complementario"] },
+                                        type: {
+                                            type: "string",
+                                            enum: ["concepto_medico", "paraclinico", "examen_complementario"],
+                                        },
                                         file: { type: "string", format: "binary" },
                                     },
                                     required: ["cedula", "type", "file"],
@@ -155,7 +194,10 @@ const options = {
                         },
                     },
                     responses: {
-                        201: { description: "Documento subido", content: { "application/json": { schema: { $ref: "#/components/schemas/Document" } } } },
+                        201: {
+                            description: "Documento subido",
+                            content: { "application/json": { schema: { $ref: "#/components/schemas/Document" } } },
+                        },
                         400: { description: "Error de validación" },
                         403: { description: "Acceso denegado" },
                     },
