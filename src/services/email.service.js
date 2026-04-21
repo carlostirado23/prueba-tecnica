@@ -1,20 +1,22 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST || "smtp.mailtrap.io",
-    port: parseInt(process.env.EMAIL_PORT || "587"),
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-    },
-});
+const getTransporter = () =>
+    nodemailer.createTransport({
+        host: process.env.EMAIL_HOST,
+        port: parseInt(process.env.EMAIL_PORT || "587"),
+        secure: false,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+        },
+    });
 
 export const sendTempCode = async (email, code) => {
     if (!process.env.EMAIL_USER) {
         console.log(`[EMAIL] → ${email} | Código: ${code}`);
         return;
     }
-    await transporter.sendMail({
+    await getTransporter().sendMail({
         from: process.env.EMAIL_FROM || "noreply@saludocupacional.com",
         to: email,
         subject: "Código de acceso - Salud Ocupacional de los Andes",
