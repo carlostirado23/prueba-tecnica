@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 
-app.set("trust proxy", 1); 
+app.set("trust proxy", 1);
 app.use(cors());
 app.use(express.json());
 
@@ -36,6 +36,8 @@ app.use((err, req, res, next) => {
 // };
 
 // start();
+
+let initialized = false;
 
 export default async function handler(req, res) {
     try {
