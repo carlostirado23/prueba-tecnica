@@ -37,4 +37,16 @@ app.use((err, req, res, next) => {
 
 // start();
 
-module.exports = app;
+export default async function handler(req, res) {
+    try {
+        if (!initialized) {
+            await initDB();
+            initialized = true;
+        }
+
+        return app(req, res);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Server error" });
+    }
+}
