@@ -27,14 +27,14 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: err.message || "Error interno" });
 });
 
-const start = async () => {
-    await initDB();
-    app.listen(process.env.PORT || 4000, () => {
-        console.log(`Servidor corriendo en puerto ${process.env.PORT || 4000}`);
-        console.log(`Docs: http://localhost:${process.env.PORT || 4000}/api-docs`);
-    });
-};
+// const start = async () => {
+//     await initDB();
+//     app.listen(process.env.PORT || 4000, () => {
+//         console.log(`Servidor corriendo en puerto ${process.env.PORT || 4000}`);
+//         console.log(`Docs: http://localhost:${process.env.PORT || 4000}/api-docs`);
+//     });
+// };
 
-start();
+// start();
 
 module.exports = app;
