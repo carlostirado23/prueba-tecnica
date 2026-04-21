@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import { mkdir } from "fs/promises";
 import { initDB } from "./src/db/init.js";
 import { swaggerSpec } from "./src/config/swagger.js";
 import authRoutes from "./src/routes/auth.routes.js";
@@ -24,12 +23,10 @@ app.use("/documents", documentRoutes);
 app.use("/admin", adminRoutes);
 
 app.use((err, req, res, next) => {
-    if (err.code === "LIMIT_FILE_SIZE") return res.status(400).json({ error: "Archivo muy grande (máx 10MB)" });
     res.status(500).json({ error: err.message || "Error interno" });
 });
 
 const start = async () => {
-    await mkdir("uploads", { recursive: true });
     await initDB();
     app.listen(process.env.PORT || 4000, () => {
         console.log(`Servidor corriendo en puerto ${process.env.PORT || 4000}`);
