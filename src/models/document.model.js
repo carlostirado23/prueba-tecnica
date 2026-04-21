@@ -15,8 +15,10 @@ export const Document = sequelize.define(
             type: DataTypes.STRING,
         },
 
-        file_url: {
-            type: DataTypes.TEXT,
+        status: {
+            type: DataTypes.ENUM("activo", "pendiente", "inactivo"),
+            defaultValue: "activo",
+            allowNull: false,
         },
 
         metadata: {
