@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 
-app.set("trust proxy", 1);
+app.set("trust proxy", 1); 
 app.use(cors());
 app.use(express.json());
 
@@ -27,28 +27,14 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: err.message || "Error interno" });
 });
 
-// const start = async () => {
-//     await initDB();
-//     app.listen(process.env.PORT || 4000, () => {
-//         console.log(`Servidor corriendo en puerto ${process.env.PORT || 4000}`);
-//         console.log(`Docs: http://localhost:${process.env.PORT || 4000}/api-docs`);
-//     });
-// };
+const start = async () => {
+    await initDB();
+    app.listen(process.env.PORT || 4000, () => {
+        console.log(`Servidor corriendo en puerto ${process.env.PORT || 4000}`);
+        console.log(`Docs: http://localhost:${process.env.PORT || 4000}/api-docs`);
+    });
+};
 
-// start();
+start();
 
-let initialized = false;
 
-export default async function handler(req, res) {
-    try {
-        if (!initialized) {
-            await initDB();
-            initialized = true;
-        }
-
-        return app(req, res);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Server error" });
-    }
-}
