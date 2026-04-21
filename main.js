@@ -12,6 +12,7 @@ dotenv.config();
 
 const app = express();
 
+app.set("trust proxy", 1); // Render/Vercel sit behind reverse proxy — needed for correct req.protocol (https)
 app.use(cors());
 app.use(express.json());
 
